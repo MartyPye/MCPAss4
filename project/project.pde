@@ -22,6 +22,7 @@ void setup()
 
 void draw()
 {
+  background(200);
   drawUpperButtons();
   translate(width/2,height/2,0);
   
@@ -30,10 +31,12 @@ void draw()
   {
     Object tempObject = (Object)objects.get(objectNr);
     tempObject.drawSelf();
+    
   }
   
   if(currentObject != null){
-     currentObject.drawSelf(); 
+     currentObject.drawSelf();
+     currentObject.drawLastPointIfInRange(status); 
   }
 
 }
@@ -55,7 +58,20 @@ void mouseClicked() {
     currentObject = new Polyline();
     currentObject.addVertex(relXCoo(mouseX),relYCoo(mouseY));
   } else if (status == 10){
-    currentObject.addVertex(relXCoo(mouseX),relYCoo(mouseY));
+    Polyline temp = (Polyline)currentObject;
+    PVector tempV = (PVector)temp.vertices.get(0);
+    float x = tempV.x;
+    float y = tempV.y;
+    if(abs(relXCoo(mouseX)-x)<5 && abs(relYCoo(mouseY)-y)<5 && temp.vertices.size()>1)
+    {
+      currentObject.addVertex(x,y);
+      objects.add(currentObject);
+      currentObject = null;
+      status = 20;
+      //TODO: SET CAMERA TO THE FRONT
+    } else {
+      currentObject.addVertex(relXCoo(mouseX),relYCoo(mouseY));
+    }
   } else {
     //NOTHING
     //In the other 2 states there is no mouse action
@@ -79,7 +95,8 @@ void keyPressed() {
       //    OR what we defined with the arrow-keys
       
       //objects.add(currentObject);
-      status = 0; 
+      status = 0;
+     //TODO: SET CAMERA TO THE TOP AGAIN 
     } else {
        //NOTHING 
        //In the other states we don't deal with ENTER

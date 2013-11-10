@@ -12,7 +12,7 @@ class Object {
   
   void addVertex(float pointX, float pointZ){}
 
-  
+  void drawLastPointIfInRange(int status) {}
   
   
   
