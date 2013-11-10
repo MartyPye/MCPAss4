@@ -1,0 +1,13 @@
+# For OS X
+*.DS_Store
+
+# For Xcode
+*/build/*
+*.xcodeproj/*.pbxuser
+*.xcodeproj/*.mode1v3
+*.xcodeproj/*.perspectivev3
+xcuserdata
+
+# For R
+*.Rapp.history
+*.Rhistory
