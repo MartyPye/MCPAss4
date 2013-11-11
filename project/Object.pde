@@ -14,6 +14,8 @@ class Object {
 
   void drawLastPointIfInRange(int status) {}
   
+  void setHeight(float theHeight){}
+  
   
   
 }
