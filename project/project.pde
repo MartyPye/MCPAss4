@@ -36,7 +36,6 @@ void draw()
   translate(width/2,height/2,0);
   rotateX(rotation.x);
   rotateY(rotation.y);
-  translate(width/2, height/2, 0);
 
   //Draw all the objects we have
   for (int objectNr=0; objectNr<objects.size();objectNr++)
