@@ -93,10 +93,6 @@ void mouseClicked() {
       currentObject.addVertex(relXCoo(mouseX),relYCoo(mouseY));
       //TODO: SET CAMERA TO THE FRONT
     } 
-    else {
-      currentObject.addVertex(relXCoo(mouseX), relYCoo(mouseY));
-
-    }
   } 
   else {
     //NOTHING
@@ -132,11 +128,6 @@ void keyPressed() {
 
       //TODO: SET CAMERA TO THE TOP AGAIN
     } 
-    else {
-      //NOTHING 
-      //In the other states we don't deal with ENTER
-
-    }
   }
 }
 
