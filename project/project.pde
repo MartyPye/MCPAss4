@@ -11,6 +11,7 @@ int status;
 
 Object currentObject;
 ArrayList objects = new ArrayList();
+Vec2D rotation=new Vec2D();
 
 
 void setup()
@@ -24,7 +25,11 @@ void draw()
 {
   background(200);
   drawUpperButtons();
+  lights();
+
   translate(width/2,height/2,0);
+  rotateX(rotation.x);
+  rotateY(rotation.y);
   
   //Draw all the objects we have
   for(int objectNr=0; objectNr<objects.size();objectNr++)
@@ -38,7 +43,6 @@ void draw()
      currentObject.drawSelf();
      currentObject.drawLastPointIfInRange(status); 
   }
-
 }
 
 float relXCoo(int x)
@@ -68,7 +72,9 @@ void mouseClicked() {
       objects.add(currentObject);
       currentObject = null;
       status = 20;
-      //TODO: SET CAMERA TO THE FRONT
+      
+      rotation.addSelf(PI/2.0,0);
+      //camera(width/2.0, height, (height/2.0) / tan(PI*70.0 / 180.0), width/2.0, height/2.0, 0, 0, 1, 0);
     } else {
       currentObject.addVertex(relXCoo(mouseX),relYCoo(mouseY));
     }
@@ -96,7 +102,9 @@ void keyPressed() {
       
       //objects.add(currentObject);
       status = 0;
-     //TODO: SET CAMERA TO THE TOP AGAIN 
+      
+      rotation.addSelf(-PI/2.0,0);
+      //camera(width/2.0, height/2.0, (height/2.0) / tan(PI*30.0 / 180.0), width/2.0, height/2.0, 0, 0, 1, 0);
     } else {
        //NOTHING 
        //In the other states we don't deal with ENTER
