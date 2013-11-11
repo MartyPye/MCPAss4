@@ -3,8 +3,27 @@ class Polyline extends Object {
   
   void drawSelf()
   {
-     //TODO VERENA: CREATE MESH OF "VERTICES" AND "o_height" 
-     //fill(255);
+     noFill();
+     beginShape();
+     for(int i=0; i< vertices.size()-2; i++){
+       PVector firstPoint = (PVector) vertices.get(i);
+       PVector secondPoint = (PVector) vertices.get(i+1);
+       PVector thirdPoint = (PVector) vertices.get(i+2);
+       vertex(firstPoint.x, firstPoint.y, firstPoint.z);
+       vertex(secondPoint.x, secondPoint.y, secondPoint.z);
+       vertex(firstPoint.x, firstPoint.y, firstPoint.z);
+       vertex(thirdPoint.x, thirdPoint.y, thirdPoint.z);
+       vertex(secondPoint.x, secondPoint.y, secondPoint.z);
+       vertex(thirdPoint.x, thirdPoint.y, thirdPoint.z);
+     }
+     endShape();
+     
+     
+     
+  }
+  
+  void drawSelfTemporary()
+  {
      noFill();
      beginShape();
      for(int i=0; i< vertices.size()-2; i++){

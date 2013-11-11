@@ -50,4 +50,33 @@ void drawUpperButtons()
     text("MOVING", 920, 30);
     
     
+    
+    noFill();
+    if(kindOfObject == 0) fill(color(150));
+    beginShape();
+    vertex(width-160,60);
+    vertex(width-20,60);
+    vertex(width-20,100);
+    vertex(width-160,100);
+    vertex(width-160,60);
+    endShape();
+    
+    textSize(24);
+    fill(255);
+    text("Polyline", width-140, 90);
+    
+    noFill();
+    if(kindOfObject == 1) fill(color(150));
+    beginShape();
+    vertex(width-160,120);
+    vertex(width-20,120);
+    vertex(width-20,160);
+    vertex(width-160,160);
+    vertex(width-160,120);
+    endShape();
+    
+    textSize(24);
+    fill(255);
+    text("Circle", width-140, 150);
+    
 }

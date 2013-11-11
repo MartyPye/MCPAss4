@@ -9,13 +9,14 @@ class Object {
   }
   
   void drawSelf(){}
+  void drawSelfTemporary(){}
   
   void addVertex(float pointX, float pointZ){}
-
   void drawLastPointIfInRange(int status) {}
-  
   void setHeight(float theHeight){}
   
-  
+  void addCenter(float pointX, float pointZ){}
+  PVector getCenterOfCircle(){ return null;}
+  void setRadius(float radius){}
   
 }

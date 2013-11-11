@@ -1,7 +1,8 @@
 import toxi.geom.*;
 import toxi.geom.mesh.*;
 import java.util.Iterator;
-import peasy.*;
+//import peasy.*;
+import toxi.processing.*;
 import processing.serial.*;
 
 // THE DIFFERENT STATUSES:
@@ -10,10 +11,12 @@ import processing.serial.*;
 // 20: Currently resizing the height of the object
 // 30: Currently setting the yPos of the object
 int status;
+int kindOfObject;
 
 Object currentObject;
 ArrayList objects = new ArrayList();
 Vec2D rotation=new Vec2D();
+ToxiclibsSupport gfx;
 
 Serial myPort;  // Create object from Serial class
 
@@ -22,6 +25,9 @@ void setup()
 {
   size(1200, 800, P3D);
   status = 0;
+  kindOfObject = 0;
+  gfx=new ToxiclibsSupport(this);
+  
   String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
   myPort = new Serial(this, portName, 9600);
 }
@@ -49,9 +55,8 @@ void draw()
     tempObject.drawSelf();
   }
 
-
   if (currentObject != null) {
-    currentObject.drawSelf();
+    currentObject.drawSelfTemporary();
     currentObject.drawLastPointIfInRange(status);
   }
 
@@ -69,10 +74,27 @@ float relYCoo(int y)
 
 void mouseClicked() {
   if (status == 0) {
-    println("First Vertex set");
-    status = 10;
-    currentObject = new Polyline();
-    currentObject.addVertex(relXCoo(mouseX), relYCoo(mouseY));
+    if(mouseX>width-160 && mouseX<width-20 && mouseY>60 && mouseY<100)
+    {
+       //We selected the Polyline
+       kindOfObject = 0;
+    } else if(mouseX>width-160 && mouseX<width-20 && mouseY>120 && mouseY<160)
+    {
+       //We selected the Circle
+       kindOfObject = 1;
+    } else if(kindOfObject == 0){
+      println("WE CREATE A POLYLINE");
+      println("First Vertex set");
+      status = 10;
+      currentObject = new Polyline();
+      currentObject.addVertex(relXCoo(mouseX), relYCoo(mouseY));
+    } else {
+      println("WE CREATE A CIRCLE");
+      println("Center set");
+      currentObject = new Circle();
+      currentObject.addCenter(relXCoo(mouseX), relYCoo(mouseY));
+      status = 11;
+    }
   } 
   else if (status == 10) {
     Polyline temp = (Polyline)currentObject;
@@ -90,8 +112,16 @@ void mouseClicked() {
       //camera(width/2.0, height, (height/2.0) / tan(PI*70.0 / 180.0), width/2.0, height/2.0, 0, 0, 1, 0);
     } else {
       currentObject.addVertex(relXCoo(mouseX),relYCoo(mouseY));
-      //TODO: SET CAMERA TO THE FRONT
     } 
+  } 
+  else if (status == 11) {
+    PVector temp = (PVector)currentObject.getCenterOfCircle();
+    float distance = (int)sqrt(pow(temp.x-relXCoo(mouseX),2)+pow(temp.y-relYCoo(mouseY),2));
+    currentObject.setRadius(distance);
+    objects.add(currentObject);
+    currentObject = null;
+    status = 20;
+    rotation.addSelf(PI/2.0,0);
   } 
   else {
     //NOTHING
