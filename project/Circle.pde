@@ -44,16 +44,11 @@ class Circle extends Object {
       } 
     }
   }
-  
+  */
   void setHeight(float theHeight)
   {
     this.o_height = theHeight; 
-    for (int i = 1; i < vertices.size(); i += 2) {
-      PVector currentPoint = (PVector)vertices.get(i);
-      currentPoint.z = this.o_height;
-      vertices.set(i, currentPoint);  
-    }
   }
-  */
+  
   
 }

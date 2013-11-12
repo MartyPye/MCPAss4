@@ -28,7 +28,7 @@ void setup()
   kindOfObject = 0;
   gfx=new ToxiclibsSupport(this);
   
-  String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
+  String portName = Serial.list()[5]; //change the 0 to a 1 or 2 etc. to match your port
   myPort = new Serial(this, portName, 9600);
 }
 
@@ -48,14 +48,17 @@ void draw()
   {
     Object tempObject = (Object)objects.get(objectNr);
     if (status == 20) {
-      if (getSensorValue() != 0) {
-        tempObject.setHeight(10*getSensorValue());
+      float handHeight = getSensorValue();
+      if (handHeight != 0) {
+        tempObject.setHeight(10*handHeight);
+        println("setting height to" + handHeight);
       }
     }
     tempObject.drawSelf();
   }
 
   if (currentObject != null) {
+//    currentObject.drawSelf();
     currentObject.drawSelfTemporary();
     currentObject.drawLastPointIfInRange(status);
   }
