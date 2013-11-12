@@ -16,10 +16,7 @@ class Polyline extends Object {
        vertex(secondPoint.x, secondPoint.y, secondPoint.z);
        vertex(thirdPoint.x, thirdPoint.y, thirdPoint.z);
      }
-     endShape();
-     
-     
-     
+     endShape();  
   }
   
   void drawSelfTemporary()
@@ -37,10 +34,7 @@ class Polyline extends Object {
        vertex(secondPoint.x, secondPoint.y, secondPoint.z);
        vertex(thirdPoint.x, thirdPoint.y, thirdPoint.z);
      }
-     endShape();
-     
-     
-     
+     endShape();  
   }
   
   void addVertex(float pointX, float pointZ)
@@ -71,6 +65,5 @@ class Polyline extends Object {
       vertices.set(i, currentPoint);  
     }
   }
-  
-  
+
 }
