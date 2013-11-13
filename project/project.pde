@@ -5,8 +5,7 @@ import java.util.Iterator;
 import toxi.processing.*;
 import processing.serial.*;
 
-TriangleMesh mesh = new TriangleMesh("test");
-ArrayList vertices = new ArrayList();
+
 
 // THE DIFFERENT STATUSES:
 //  0: Waiting that the first thing is getting drawn
@@ -161,26 +160,16 @@ void keyPressed() {
       //TODO: SET CAMERA TO THE TOP AGAIN
     } 
   }else if(key == 's' && status >= 20){
-    saveSTL();
-    mesh.saveAsSTL(sketchPath("mesh.stl"));
+    
+    for (int objectNr=0; objectNr<objects.size();objectNr++)
+    {
+      Object tempObject = (Object)objects.get(objectNr);
+      tempObject.saveSTL();
+    }
   }
 }
 
-  void saveSTL(){
-    beginShape();
-     for(int i=0; i< vertices.size()-2; i++){
-       Vec3D firstPoint = (Vec3D) vertices.get(i);
-       Vec3D secondPoint = (Vec3D) vertices.get(i+1);
-       Vec3D thirdPoint = (Vec3D) vertices.get(i+2);
-       mesh.addFace((Vec3D) firstPoint.x, (Vec3D) firstPoint.y, (Vec3D) firstPoint.z);
-       mesh.addFace(secondPoint.x, secondPoint.y, secondPoint.z);
-       mesh.addFace(firstPoint.x, firstPoint.y, firstPoint.z);
-       mesh.addFace(thirdPoint.x, thirdPoint.y, thirdPoint.z);
-       mesh.addFace(secondPoint.x, secondPoint.y, secondPoint.z);
-       mesh.addFace(thirdPoint.x, thirdPoint.y, thirdPoint.z);
-     }
-     endShape();
-  }
+  
 
 float getSensorValue()
 {
