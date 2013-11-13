@@ -162,7 +162,7 @@ void keyPressed() {
 
       //TODO: SET CAMERA TO THE TOP AGAIN
     } 
-  }else if(key == 's' && status >= 20){
+  }else if(key == 's' && status >= 30){
     
     for (int objectNr=0; objectNr<objects.size();objectNr++)
     {
