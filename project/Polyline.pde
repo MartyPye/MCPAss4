@@ -91,6 +91,26 @@ class Polyline extends Object {
 //       mesh.addFace(secondPoint.x, secondPoint.y, secondPoint.z);
 //       mesh.addFace(thirdPoint.x, thirdPoint.y, thirdPoint.z);
      }
+     
+//     if (vertices.size() > 6) {
+//       for (int i = 0; i< vertices.size()-2; i += 4) {
+//         PVector firstPoint = (PVector) vertices.get(i);
+//         PVector secondPoint = (PVector) vertices.get(i+2);
+//         PVector thirdPoint = ( PVector) vertices.get(i+4);
+//         Vec3D firstVec = new Vec3D(firstPoint.x, firstPoint.y, firstPoint.z);
+//         Vec3D secondVec = new Vec3D(secondPoint.x, secondPoint.y, secondPoint.z);
+//         Vec3D thirdVec = new Vec3D(thirdPoint.x, thirdPoint.y, thirdPoint.z);
+//         mesh.addFace(firstVec, secondVec, thirdVec);
+//         
+//         firstPoint = (PVector) vertices.get(i+1);
+//         secondPoint = (PVector) vertices.get(i+3);
+//         thirdPoint = (PVector) vertices.get(i+5);
+//         firstVec = new Vec3D(firstPoint.x, firstPoint.y, firstPoint.z);
+//         secondVec = new Vec3D(secondPoint.x, secondPoint.y, secondPoint.z);
+//         thirdVec = new Vec3D(thirdPoint.x, thirdPoint.y, thirdPoint.z);
+//         mesh.addFace(firstVec, secondVec, thirdVec);
+//       }
+//     }
 //     endShape();
      mesh.saveAsSTL(sketchPath("mesh.stl"));
   }
