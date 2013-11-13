@@ -8,6 +8,10 @@ class Object {
     o_height = 10;
   }
   
+  ArrayList getVertices(){return null;}
+  
+  void saveSTL(){}
+  
   void drawSelf(){}
   void drawSelfTemporary(){}
   

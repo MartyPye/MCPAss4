@@ -5,6 +5,8 @@ import java.util.Iterator;
 import toxi.processing.*;
 import processing.serial.*;
 
+
+
 // THE DIFFERENT STATUSES:
 //  0: Waiting that the first thing is getting drawn
 // 10: Currently drawing
@@ -160,8 +162,17 @@ void keyPressed() {
 
       //TODO: SET CAMERA TO THE TOP AGAIN
     } 
+  }else if(key == 's' && status >= 20){
+    
+    for (int objectNr=0; objectNr<objects.size();objectNr++)
+    {
+      Object tempObject = (Object)objects.get(objectNr);
+      tempObject.saveSTL();
+    }
   }
 }
+
+  
 
 float getSensorValue()
 {
